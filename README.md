@@ -1413,7 +1413,7 @@ For issues or questions:
 
 ### ⭐ Star this repository if you find it helpful!
 
-**Built with 💻 and ☕**
+**Built with 💻 and ☕ by MonteyAI**
 
 [Report Bug](https://github.com/yourusername/etl-log-analyzer/issues) · [Request Feature](https://github.com/yourusername/etl-log-analyzer/issues) · [View Docs](USER_GUIDE.md)
 
