@@ -1,0 +1,65 @@
+[2025-10-29T06:00:00] INFO - Workflow [wf_Customer_Load] started
+[2025-10-29T06:00:01] INFO - Session [s_Extract_Customers] started
+[2025-10-29T06:00:05] INFO - Connected to source database ORACLE_PROD
+[2025-10-29T06:00:10] INFO - Source qualifier transformation started
+[2025-10-29T06:00:35] INFO - Extracted 250000 rows from source, elapsed 25.5 seconds
+[2025-10-29T06:00:36] INFO - Router transformation started
+[2025-10-29T06:00:45] WARNING - 1500 rows routed to error group due to validation failure
+[2025-10-29T06:00:50] INFO - Expression transformation started
+[2025-10-29T06:01:15] INFO - Lookup transformation [LKP_Customer_Type] started
+[2025-10-29T06:01:45] ERROR - Lookup query failed: ORA-00942: table or view does not exist
+[2025-10-29T06:01:50] INFO - Session [s_Extract_Customers] failed
+[2025-10-29T06:01:51] FATAL - Workflow [wf_Customer_Load] stopped due to session failure
+[2025-10-29T06:15:00] INFO - Workflow [wf_Order_Load] started
+[2025-10-29T06:15:01] INFO - Session [s_Extract_Orders] started
+[2025-10-29T06:15:05] INFO - Connected to source database MSSQL_PROD
+[2025-10-29T06:15:10] INFO - Source qualifier transformation started
+[2025-10-29T06:16:30] INFO - Extracted 1000000 rows from source, elapsed 80.2 seconds
+[2025-10-29T06:16:31] INFO - Aggregator transformation started
+[2025-10-29T06:18:45] INFO - Aggregation completed, processed 1000000 records, took 134.5 seconds
+[2025-10-29T06:18:46] INFO - Joiner transformation started
+[2025-10-29T06:19:30] WARNING - 2500 unmatched rows from master pipeline
+[2025-10-29T06:19:35] INFO - Sorter transformation started
+[2025-10-29T06:20:15] INFO - Sort completed, duration 40.3 seconds
+[2025-10-29T06:20:16] INFO - Target load started
+[2025-10-29T06:20:17] INFO - Connected to target database POSTGRES_DW
+[2025-10-29T06:23:45] INFO - Target load completed, loaded 997500 rows, duration 209.8 seconds
+[2025-10-29T06:23:46] INFO - Session [s_Extract_Orders] succeeded
+[2025-10-29T06:23:47] INFO - Workflow [wf_Order_Load] completed successfully
+[2025-10-29T07:00:00] INFO - Workflow [wf_Product_Dimension] started
+[2025-10-29T07:00:01] INFO - Session [s_Load_Product_Dim] started
+[2025-10-29T07:00:05] INFO - Connected to source database ORACLE_PROD
+[2025-10-29T07:00:10] INFO - Source qualifier transformation started
+[2025-10-29T07:00:25] INFO - Extracted 50000 rows from source
+[2025-10-29T07:00:26] INFO - Lookup transformation [LKP_Existing_Products] started
+[2025-10-29T07:00:45] ERROR - OutOfMemoryError: Java heap space exceeded
+[2025-10-29T07:00:46] ERROR - Lookup cache initialization failed
+[2025-10-29T07:00:47] INFO - Session [s_Load_Product_Dim] failed
+[2025-10-29T07:00:48] FATAL - Workflow [wf_Product_Dimension] stopped due to session failure
+[2025-10-29T07:30:00] INFO - Workflow [wf_Daily_Reconciliation] started
+[2025-10-29T07:30:01] INFO - Session [s_Reconcile_Facts] started
+[2025-10-29T07:30:05] INFO - Connected to warehouse database SNOWFLAKE_DW
+[2025-10-29T07:30:10] INFO - SQL transformation started
+[2025-10-29T07:35:30] INFO - Reconciliation query completed, processed 5000000 rows, elapsed 320.5 seconds
+[2025-10-29T07:35:31] WARNING - Found 150 discrepancy records
+[2025-10-29T07:35:35] INFO - Filter transformation started
+[2025-10-29T07:35:40] INFO - Update strategy transformation started
+[2025-10-29T07:35:45] INFO - Target update started
+[2025-10-29T07:36:15] INFO - Updated 150 records in target, duration 30.2 seconds
+[2025-10-29T07:36:16] INFO - Session [s_Reconcile_Facts] succeeded
+[2025-10-29T07:36:17] INFO - Workflow [wf_Daily_Reconciliation] completed successfully
+[2025-10-29T08:00:00] INFO - Workflow [wf_Customer_Delta] started
+[2025-10-29T08:00:01] INFO - Session [s_CDC_Customer] started
+[2025-10-29T08:00:05] ERROR - Connection failed: timeout connecting to CDC stream
+[2025-10-29T08:00:10] INFO - Retry attempt 1 of 3
+[2025-10-29T08:00:15] ERROR - Connection failed: timeout connecting to CDC stream
+[2025-10-29T08:00:20] INFO - Retry attempt 2 of 3
+[2025-10-29T08:00:25] INFO - Connected to CDC stream
+[2025-10-29T08:00:30] INFO - Reading change data capture records
+[2025-10-29T08:00:45] INFO - Retrieved 15000 CDC records
+[2025-10-29T08:00:50] INFO - Update strategy transformation started
+[2025-10-29T08:00:55] WARNING - Duplicate key constraint violation for 25 inserts
+[2025-10-29T08:01:00] INFO - Target load started
+[2025-10-29T08:01:35] INFO - Loaded 14975 records to target, took 35.8 seconds
+[2025-10-29T08:01:36] INFO - Session [s_CDC_Customer] succeeded
+[2025-10-29T08:01:37] INFO - Workflow [wf_Customer_Delta] completed successfully
