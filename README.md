@@ -30,7 +30,7 @@ See the [Security Considerations](#-security-considerations) section for full de
 
 ## 🎯 Overview
 
-ETL Log Analyzer is a **production-ready desktop application** that simplifies troubleshooting and performance analysis of ETL pipeline logs. Built with Python, Tkinter, Pandas, and Matplotlib, it provides intelligent pattern recognition, root cause analysis, and comprehensive visualizations—without the complexity of enterprise monitoring tools.
+ETL Log Analyzer is a desktop application that simplifies troubleshooting and performance analysis of ETL pipeline logs. Built with Python, Tkinter, Pandas, and Matplotlib, it provides intelligent pattern recognition, root cause analysis, and comprehensive visualizations—without the complexity of enterprise monitoring tools.
 
 This project serves as a **professional tool** demonstrating modern software engineering practices, data analysis techniques, and a complete log analysis solution suitable for data engineers, DevOps teams, and system administrators.
 
